@@ -61,8 +61,7 @@ defmodule AuthenticationWeb.MixProject do
       {:authentication_service, in_umbrella: true},
       {:absinthe, "~> 1.7"},
       {:absinthe_federation, "~> 0.6"},
-      {:absinthe_plug, "~> 1.5"},
-      {:ecto_shorts, "~> 2.3"}
+      {:absinthe_plug, "~> 1.5"}
     ]
   end
 

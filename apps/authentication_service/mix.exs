@@ -49,7 +49,8 @@ defmodule AuthenticationService.MixProject do
       {:hackney, "~> 1.9"},
       {:ueberauth, "~>0.10"},
       {:ueberauth_github, "~> 0.8"},
-      {:ueberauth_google, "~> 0.10"}
+      {:ueberauth_google, "~> 0.10"},
+      {:ecto_shorts, "~> 2.3"}
     ]
   end
 
