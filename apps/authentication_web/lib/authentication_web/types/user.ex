@@ -1,7 +1,8 @@
 defmodule AuthenticationWeb.Types.User do
-  use Absinthe.Schema
-  use Absinthe.Federation.Schema
+  use Absinthe.Schema.Notation
   alias AuthenticationService.Accounts.User
+
+  import Absinthe.Resolution.Helpers, only: [dataloader: 2]
 
   extend schema do
     directive(:link,
@@ -18,6 +19,7 @@ defmodule AuthenticationWeb.Types.User do
       resolve dataloader(AuthenticationWeb.Loader, fn _parent, args, _res ->
                 %{batch: {{:one, User}, %{}}, user: [id: args.id]}
               end)
+    end
     field :id, non_null(:id)
     field :email, :string
     field :name, :string

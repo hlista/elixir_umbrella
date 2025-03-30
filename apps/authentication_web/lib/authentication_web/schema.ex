@@ -2,25 +2,9 @@ defmodule AuthenticationWeb.Schema do
   use Absinthe.Schema
   use Absinthe.Federation.Schema
 
-  import Absinthe.Resolution.Helpers, only: [on_load: 2, dataloader: 2]
+  import Absinthe.Resolution.Helpers, only: [dataloader: 2]
 
-  extend schema do
-    directive :link,
-      url: "https://specs.apollo.dev/federation/v2.3",
-      import: [
-        "@key",
-        "@shareable",
-        "@provides",
-        "@requires",
-        "@external",
-        "@tag",
-        "@extends",
-        "@override",
-        "@inaccessible",
-        "@composeDirective",
-        "@interfaceObject"
-      ]
-  end
+  import_types AuthenticationWeb.Types.User
 
   def context(ctx) do
     loader =
@@ -37,5 +21,4 @@ defmodule AuthenticationWeb.Schema do
   query do
 
   end
-
 end
