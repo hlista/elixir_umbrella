@@ -12,7 +12,7 @@ defmodule AuthenticationService.Accounts.OAuthAccount do
     field :refresh_token, :string
     field :token_expires_at, :utc_datetime
 
-    belongs_to :user, MyApp.User
+    belongs_to :user, AuthenticationService.Accounts.User
 
     timestamps()
   end
