@@ -11,6 +11,9 @@ import Config
 
 config :joken, default_signer: "ABC"
 
+config :ecto_shorts,
+  error_module: EctoShorts.Actions.Error
+
 #Config ueberauth
 config :ueberauth, Ueberauth,
   providers: [
@@ -53,7 +56,7 @@ config :authentication_web, AuthenticationWeb.Endpoint,
     formats: [html: AuthenticationWeb.ErrorHTML, json: AuthenticationWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: AuthenticationWeb.PubSub,
+  pubsub_server: AuthenticationService.PubSub,
   live_view: [signing_salt: "nf7Nk9zq"]
 
 # Configure esbuild (the version is required)

@@ -12,6 +12,15 @@ defmodule AuthenticationWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug AuthenticationWeb.Plug.UserPlug
+  end
+
+  scope "/api" do
+    pipe_through :api
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: AuthenticationWeb.Schema,
+      interface: :playground
+    forward "/", Absinthe.Plug, schema: AuthenticationWeb.Schema
   end
 
   scope "/", AuthenticationWeb do

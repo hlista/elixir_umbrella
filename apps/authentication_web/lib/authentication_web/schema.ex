@@ -19,6 +19,8 @@ defmodule AuthenticationWeb.Schema do
   end
 
   query do
-
+    field :user, :user do
+      resolve &AuthenticationWeb.Resolvers.Users.get_user/2
+    end
   end
 end

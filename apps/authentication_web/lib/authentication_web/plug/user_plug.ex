@@ -8,7 +8,7 @@ defmodule AuthenticationWeb.Plug.UserPlug do
 
   @impl Plug
   def call(conn, _opts \\ []) do
-    with {:ok, jwt_token} < get_jwt(conn),
+    with {:ok, jwt_token} <- get_jwt(conn),
          {:ok, %{
           "email" => email,
           "user_id" => user_id
@@ -20,6 +20,8 @@ defmodule AuthenticationWeb.Plug.UserPlug do
           email: email
         }
       })
+    else
+      _ -> conn
     end
   end
 

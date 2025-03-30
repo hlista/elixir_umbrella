@@ -1,6 +1,11 @@
 defmodule AuthenticationService.Accounts do
   alias AuthenticationService.Repo
   alias AuthenticationService.Accounts.{User, OAuthAccount}
+  alias EctoShorts.Actions
+  @repo [repo: AuthenticationService.Repo]
+  def find_user(params, opts \\ []) do
+    Actions.find(User, params, @repo)
+  end
 
   def get_or_create_user_from_ueberauth(%Ueberauth.Auth{} = auth) do
     provider = to_string(auth.provider)
