@@ -64,13 +64,3 @@ config :authentication_web, AuthenticationWeb.Endpoint,
 
 # Enable dev routes for dashboard and mailbox
 config :authentication_web, dev_routes: true
-
-# Configure your database
-config :oban_service, ObanService.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "oban_service_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10

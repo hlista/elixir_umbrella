@@ -81,19 +81,6 @@ config :tailwind,
     cd: Path.expand("../apps/authentication_web/assets", __DIR__)
   ]
 
-# Configure Mix tasks and generators
-config :oban_service,
-  ecto_repos: [ObanService.Repo]
-
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :oban_service, ObanService.Mailer, adapter: Swoosh.Adapters.Local
-
 # Sample configuration:
 #
 #     config :logger, :console,
