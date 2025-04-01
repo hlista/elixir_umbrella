@@ -9,12 +9,40 @@
 # move said applications out of the umbrella.
 import Config
 
+# Configure Mix tasks and generators
+config :billing_service,
+  ecto_repos: [BillingService.Repo]
+
+# Configures the mailer
+#
+# By default it uses the "Local" adapter which stores the emails
+# locally. You can see the emails in your browser, at "/dev/mailbox".
+#
+# For production it's recommended to configure a different adapter
+# at the `config/runtime.exs`.
+config :billing_service, BillingService.Mailer, adapter: Swoosh.Adapters.Local
+
+config :payments_service, PaymentsService.Repo, migration_primary_key: [type: :uuid]
+
+# Configure Mix tasks and generators
+config :payments_service,
+  ecto_repos: [PaymentsService.Repo]
+
+# Configures the mailer
+#
+# By default it uses the "Local" adapter which stores the emails
+# locally. You can see the emails in your browser, at "/dev/mailbox".
+#
+# For production it's recommended to configure a different adapter
+# at the `config/runtime.exs`.
+config :payments_service, PaymentsService.Mailer, adapter: Swoosh.Adapters.Local
+
 config :joken, default_signer: "ABC"
 
 config :ecto_shorts,
   error_module: EctoShorts.Actions.Error
 
-#Config ueberauth
+# Config ueberauth
 config :ueberauth, Ueberauth,
   providers: [
     google: {Ueberauth.Strategy.Google, [default_scope: "email profile"]},
@@ -34,6 +62,8 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 # Configure Mix tasks and generators
 config :authentication_service,
   ecto_repos: [AuthenticationService.Repo]
+
+config :authentication_service, AuthenticationService.Repo, migration_primary_key: [type: :uuid]
 
 # Configures the mailer
 #

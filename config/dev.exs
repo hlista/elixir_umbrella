@@ -1,6 +1,26 @@
 import Config
 
 # Configure your database
+config :billing_service, BillingService.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "billing_service_dev",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+# Configure your database
+config :payments_service, PaymentsService.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "payments_service_dev",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+# Configure your database
 config :authentication_service, AuthenticationService.Repo,
   username: "postgres",
   password: "postgres",

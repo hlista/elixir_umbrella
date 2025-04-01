@@ -1,5 +1,5 @@
 defmodule AuthenticationService.Accounts.User do
-  use Ecto.Schema
+  use AuthenticationService.Schema
   import Ecto.Changeset
 
   @required_fields [:email, :name]

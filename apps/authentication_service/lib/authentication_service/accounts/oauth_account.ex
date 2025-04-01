@@ -1,5 +1,5 @@
 defmodule AuthenticationService.Accounts.OAuthAccount do
-  use Ecto.Schema
+  use AuthenticationService.Schema
   import Ecto.Changeset
 
   @required_fields [:provider, :provider_uid, :access_token, :token_expires_at, :user_id]

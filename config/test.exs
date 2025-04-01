@@ -5,6 +5,32 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
+config :billing_service, BillingService.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "billing_service_test#{System.get_env("MIX_TEST_PARTITION")}",
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: System.schedulers_online() * 2
+
+# Configure your database
+#
+# The MIX_TEST_PARTITION environment variable can be used
+# to provide built-in test partitioning in CI environment.
+# Run `mix help test` for more information.
+config :payments_service, PaymentsService.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "payments_service_test#{System.get_env("MIX_TEST_PARTITION")}",
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: System.schedulers_online() * 2
+
+# Configure your database
+#
+# The MIX_TEST_PARTITION environment variable can be used
+# to provide built-in test partitioning in CI environment.
+# Run `mix help test` for more information.
 config :authentication_service, AuthenticationService.Repo,
   username: "postgres",
   password: "postgres",
