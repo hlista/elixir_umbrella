@@ -1,8 +1,8 @@
-defmodule Payments.BroadwayProcessor do
+defmodule PaymentsService.StripeEventIngestor do
   use Broadway
 
   alias Broadway.Message
-  alias Payments.BroadwayProcessor.PaymentEventHandler
+  alias PaymentsService.StripeEventHandler
 
   def start_link(_opts) do
     Broadway.start_link(__MODULE__,
@@ -26,7 +26,7 @@ defmodule Payments.BroadwayProcessor do
 
   def handle_message(_processor, %Message{data: raw_payload} = msg, _context) do
     with {:ok, event} <- Jason.decode(raw_payload),
-         :ok <- PaymentEventHandler.process(event) do
+         :ok <- StripeEventHandler.handle(event) do
       msg
     else
       error ->

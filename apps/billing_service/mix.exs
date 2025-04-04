@@ -42,7 +42,10 @@ defmodule BillingService.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.2"},
       {:swoosh, "~> 1.5"},
-      {:finch, "~> 0.13"}
+      {:finch, "~> 0.13"},
+      {:broadway, "~> 1.0"},
+      {:broadway_rabbitmq, "~> 0.7"},
+      {:amqp, "~> 3.1"},
     ]
   end
 

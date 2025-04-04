@@ -12,7 +12,9 @@ defmodule PaymentsService.Application do
       {DNSCluster, query: Application.get_env(:payments_service, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: PaymentsService.PubSub},
       # Start the Finch HTTP client for sending emails
-      {Finch, name: PaymentsService.Finch}
+      {Finch, name: PaymentsService.Finch},
+      PaymentsService.BroadwayProcessor,
+      PaymentsService.EventPublisher
       # Start a worker by calling: PaymentsService.Worker.start_link(arg)
       # {PaymentsService.Worker, arg}
     ]

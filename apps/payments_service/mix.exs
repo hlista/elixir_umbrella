@@ -44,6 +44,7 @@ defmodule PaymentsService.MixProject do
       {:swoosh, "~> 1.5"},
       {:finch, "~> 0.13"},
       {:broadway, "~> 1.0"},
+      {:amqp, "~> 3.1"},
       {:broadway_sqs, "~> 0.7"},
       {:oban, "~> 2.15"},
       {:ecto_shorts, "~> 2.3"}
