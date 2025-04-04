@@ -1,3 +1,0 @@
-# AuthenticationService
-
-**TODO: Add description**

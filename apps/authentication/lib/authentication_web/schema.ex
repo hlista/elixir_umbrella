@@ -5,6 +5,7 @@ defmodule AuthenticationWeb.Schema do
   import Absinthe.Resolution.Helpers, only: [dataloader: 2]
 
   import_types AuthenticationWeb.Types.User
+  import_types AuthenticationWeb.Queries.User
 
   def context(ctx) do
     loader =
@@ -19,8 +20,6 @@ defmodule AuthenticationWeb.Schema do
   end
 
   query do
-    field :user, :user do
-      resolve &AuthenticationWeb.Resolvers.Users.get_user/2
-    end
+    import_fields :user_queries
   end
 end
