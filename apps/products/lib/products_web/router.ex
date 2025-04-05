@@ -3,10 +3,15 @@ defmodule ProductsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    # plug ProductsWeb.Plug.UserPlug
   end
 
-  scope "/api", ProductsWeb do
+  scope "/api" do
     pipe_through :api
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: ProductsWeb.Schema,
+      interface: :playground
+    forward "/", Absinthe.Plug, schema: ProductsWeb.Schema
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

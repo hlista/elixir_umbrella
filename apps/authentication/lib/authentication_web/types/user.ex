@@ -4,13 +4,6 @@ defmodule AuthenticationWeb.Types.User do
 
   import Absinthe.Resolution.Helpers, only: [dataloader: 2]
 
-  extend schema do
-    directive(:link,
-      url: "https://specs.apollo.dev/federation/v2.3",
-      import: ["@key"]
-    )
-  end
-
   object :user do
     directive :key, fields: "id"
 

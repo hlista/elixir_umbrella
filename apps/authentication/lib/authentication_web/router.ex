@@ -3,7 +3,7 @@ defmodule AuthenticationWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug AuthenticationWeb.Plug.UserPlug
+    # plug AuthenticationWeb.Plug.UserPlug
   end
 
   scope "/api" do

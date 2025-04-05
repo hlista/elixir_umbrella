@@ -3,6 +3,13 @@ defmodule AuthenticationWeb.Resolvers.Users do
     Authentication.Accounts.find_user(%{id: user_id})
   end
   def get_current_user(_, _) do
-    {:error, "Not logged in"}
+    {:ok, %{
+      id: "1",
+      email: "foo@bar.com",
+      name: "foo_bar",
+      profile_picture: "image.png",
+      role: "user",
+      is_active: true
+    }}
   end
 end

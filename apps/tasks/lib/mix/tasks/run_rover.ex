@@ -4,6 +4,6 @@ defmodule Mix.Tasks.RunRover do
 
   def run(_) do
     Mix.Shell.cmd("rover dev --supergraph-config ./router/supergraph-config.yaml \
-   --router-config ./router/router-config.yaml", [quiet: true], &IO.puts/1)
+   --router-config ./router/router-config.yaml", &IO.puts/1)
   end
 end
