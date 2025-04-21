@@ -1,13 +1,13 @@
-defmodule ProductsWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :products
+defmodule UsersWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :users
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_products_key",
-    signing_salt: "0eQBHSqk",
+    key: "_users_key",
+    signing_salt: "LZUy9Ipx",
     same_site: "Lax"
   ]
 
@@ -21,15 +21,15 @@ defmodule ProductsWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :products,
+    from: :users,
     gzip: false,
-    only: ProductsWeb.static_paths()
+    only: UsersWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :products
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :users
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -47,5 +47,5 @@ defmodule ProductsWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug ProductsWeb.Router
+  plug UsersWeb.Router
 end

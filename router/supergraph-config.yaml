@@ -1,14 +1,14 @@
 federation_version: =2.7.0
 subgraphs:
-  authentication:
+  users:
     routing_url: http://localhost:4001/api
     schema:
-      file: ../apps/authentication/schema.graphql
+      file: ../apps/users/schema.graphql
   products:
     routing_url: http://localhost:4002/api
     schema:
       file: ../apps/products/schema.graphql
-  # reviews:
-  #   routing_url: http://localhost:4003
-  #   schema:
-  #     file: ../apps/reviews/schema.graphql
+  reviews:
+    routing_url: http://localhost:4003/api
+    schema:
+      file: ../apps/reviews/schema.graphql

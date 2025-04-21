@@ -1,9 +1,9 @@
-defmodule Reviews.MixProject do
+defmodule Users.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :reviews,
+      app: :users,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -22,7 +22,7 @@ defmodule Reviews.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Reviews.Application, []},
+      mod: {Users.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

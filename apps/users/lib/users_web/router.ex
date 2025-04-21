@@ -1,5 +1,5 @@
-defmodule ReviewsWeb.Router do
-  use ReviewsWeb, :router
+defmodule UsersWeb.Router do
+  use UsersWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -8,13 +8,13 @@ defmodule ReviewsWeb.Router do
   scope "/api" do
     pipe_through :api
     forward "/graphiql", Absinthe.Plug.GraphiQL,
-      schema: ReviewsWeb.Schema,
+      schema: UsersWeb.Schema,
       interface: :playground
-    forward "/", Absinthe.Plug, schema: ReviewsWeb.Schema
+    forward "/", Absinthe.Plug, schema: UsersWeb.Schema
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
-  if Application.compile_env(:reviews, :dev_routes) do
+  if Application.compile_env(:users, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put
     # it behind authentication and allow only admins to access it.
     # If your application does not have an admins-only section yet,
@@ -25,7 +25,7 @@ defmodule ReviewsWeb.Router do
     scope "/dev" do
       pipe_through [:fetch_session, :protect_from_forgery]
 
-      live_dashboard "/dashboard", metrics: ReviewsWeb.Telemetry
+      live_dashboard "/dashboard", metrics: UsersWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end

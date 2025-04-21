@@ -7,7 +7,7 @@ defmodule ReviewsWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_reviews_key",
-    signing_salt: "mKrixuyd",
+    signing_salt: "X9MqhqWA",
     same_site: "Lax"
   ]
 

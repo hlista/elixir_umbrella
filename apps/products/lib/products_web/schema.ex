@@ -1,50 +1,55 @@
 defmodule ProductsWeb.Schema do
   use Absinthe.Schema
   use Absinthe.Federation.Schema
+  alias ProductsWeb.ProductsResolver
 
   extend schema do
     directive :link,
       url: "https://specs.apollo.dev/federation/v2.7",
       import: [
-        "@key",
-        "@shareable",
-        "@provides",
-        "@requires",
-        "@external",
-        "@tag",
-        "@extends",
-        "@override",
-        "@inaccessible",
-        "@composeDirective",
-        "@interfaceObject"
+        "@key"
       ]
   end
 
-  import Absinthe.Resolution.Helpers, only: [dataloader: 2]
+  object :user do
+    directive :key, fields: "id"
 
-  import_types ProductsWeb.Types.Product
-  import_types ProductsWeb.Types.User
+    field :_resolve_reference, :user do
+      resolve(fn %{id: id}, _info ->
+        {:ok, %{__typename: "User", id: id}}
+      end)
+    end
 
-  import_types ProductsWeb.Queries.Product
-  #import_types ProductsWeb.Mutations.Product
+    field :id, non_null(:integer)
 
-  def context(ctx) do
-    loader =
-      Dataloader.new()
-      |> Dataloader.add_source(ProductsWeb.Loader, Dataloader.Ecto.new(Products.Repo))
-
-    Map.put(ctx, :loader, loader)
+    field :products, list_of(:product) do
+      resolve(fn entity, _info, _ ->
+        ProductsResolver.resolve_users_products(entity)
+      end)
+    end
   end
 
-  def plugins do
-    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
+  object :product do
+    directive :key, fields: "id"
+
+    field :_resolve_reference, :product do
+      resolve &ProductsResolver.find_by_id/2
+    end
+
+    field :id, non_null(:integer)
+
+    field :name, :string
+
+    field :user, :user do
+      resolve(fn entity, _info, _ ->
+        {:ok, %{__typename: "User", id: entity.user_id}}
+      end)
+    end
   end
 
   query do
-    import_fields :product_queries
+    field :products, non_null(list_of(:product)) do
+      resolve(&ProductsResolver.all/2)
+    end
   end
-
-  # mutation do
-  #   import_fields :product_mutations
-  # end
 end

@@ -3,7 +3,6 @@ defmodule ProductsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    # plug ProductsWeb.Plug.UserPlug
   end
 
   scope "/api" do
